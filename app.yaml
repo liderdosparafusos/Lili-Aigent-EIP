@@ -1,9 +1,17 @@
 runtime: nodejs20
 env: standard
 
-instance_class: F1
-
 handlers:
+  # Assets do Vite (JS, CSS, imagens)
+  - url: /assets
+    static_dir: dist/assets
+
+  # Qualquer outro arquivo estático
+  - url: /(.*\.(js|css|png|jpg|jpeg|svg|ico|json|map))
+    static_files: dist/\1
+    upload: dist/.*
+
+  # SPA fallback
   - url: /.*
-    secure: always
-    script: auto
+    static_files: dist/index.html
+    upload: dist/index.html
