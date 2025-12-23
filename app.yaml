@@ -1,0 +1,8 @@
+runtime: nodejs18
+
+env: standard
+
+handlers:
+  - url: /(.*)
+    static_files: dist/\1
+    upload: dist/(.*)
